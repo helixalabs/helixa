@@ -137,7 +137,7 @@
             color: var(--teal);
         }
 
-        /* CONNECT button - 1px gradient border, 10px radius, teal text */
+        /* CONNECT button - 1px purple border, 10px radius, purple text */
         .connect-btn {
             font-family: 'Inter', sans-serif;
             cursor: pointer;
@@ -146,36 +146,17 @@
             padding: 0.75rem 1.75rem;
             font-size: 0.95rem;
             font-weight: 600;
-            color: var(--teal); /* Teal text */
+            color: var(--text2); /* Purple text */
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
-            border: 1px solid transparent;
-            background: linear-gradient(var(--bg), var(--bg)) padding-box,
-                        var(--dna-gradient) border-box;
-        }
-
-        .connect-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--dna-gradient);
-            border-radius: 10px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
+            border: 1px solid var(--text2); /* Purple border */
         }
 
         .connect-btn:hover {
-            color: var(--teal); /* Stay teal on hover */
-        }
-
-        .connect-btn:hover::before {
-            opacity: 1;
+            color: var(--teal); /* Teal on hover */
+            border-color: var(--teal); /* Teal border on hover */
         }
 
         /* Main content */
@@ -242,7 +223,7 @@
             <p style="
                 font-family: 'Inter', sans-serif;
                 font-size: clamp(0.75rem, 2vw, 1.5rem); /* Half the size */
-                color: var(--text2);
+                color: var(--teal); /* Teal, not text2 */
                 margin-bottom: 24px;
                 max-width: 600px;
                 line-height: 1.4;
