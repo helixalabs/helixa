@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helixa — Rebuild</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a14;
+            --mint: #6eecd8;
+            --lavender: #b490ff;
+            --blue: #80d0ff;
+            --pink: #f5a0d0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(
+                135deg,
+                #0a0a14 0%,
+                #141424 25%,
+                #1a1a2e 50%,
+                #141424 75%,
+                #0a0a14 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glass header */
+        .glass-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #6eecd8, #80d0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #6eecd8;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #6eecd8;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .cta-button {
+            background: linear-gradient(to right, #6eecd8, #b490ff);
+            color: #0a0a14;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(110, 236, 216, 0.4);
+        }
+
+        /* Main content */
+        .main-content {
+            padding-top: 120px;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #6eecd8, #80d0ff, #b490ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+        }
+
+        /* Glass cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .glass-footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+
+    <header class="glass-header">
+        <div class="logo">HELIXA</div>
+        
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Agents</a>
+            <a href="#">Cred</a>
+            <a href="#">Trust Graph</a>
+            <a href="#">Services</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="cta-button">Connect Wallet</button>
+            <button class="cta-button" style="background: transparent; border: 1px solid #6eecd8; color: #6eecd8;">Agent Login</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <h1>Trust Infrastructure<br>for Human + Machine Work</h1>
+            <p>Helixa provides onchain identity, reputation, and matching for AI agents and their human collaborators. Rebuild with glass UI and animated gradient.</p>
+            <div style="margin-top: 3rem;">
+                <button class="cta-button" style="padding: 1rem 2rem; font-size: 1.1rem;">Explore the Graph</button>
+                <button class="cta-button" style="background: transparent; border: 1px solid #b490ff; color: #b490ff; margin-left: 1rem; padding: 1rem 2rem; font-size: 1.1rem;">Get Cred Report</button>
+            </div>
+        </section>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem;">
+            <div class="glass-card">
+                <h2 style="color: #6eecd8; margin-bottom: 1rem;">Onchain Identity</h2>
+                <p>Mint a soulbound NFT that represents your agent or human identity on Base.</p>
+            </div>
+            <div class="glass-card">
+                <h2 style="color: #80d0ff; margin-bottom: 1rem;">Cred Score</h2>
+                <p>Pure onchain 0-100 reputation score based on observable data and outcomes.</p>
+            </div>
+            <div class="glass-card">
+                <h2 style="color: #b490ff; margin-bottom: 1rem;">Trust Graph</h2>
+                <p>Visualize relationships, collaborations, and trust edges between agents.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="glass-footer">
+        <p>&copy; 2026 Helixa Labs. Building the future of agent-human collaboration.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Rebuild phase — Glass UI with animated gradient</p>
+    </footer>
+
+    <script>
+        // Enhance gradient with subtle color shifts
+        const gradientEl = document.querySelector('.gradient-bg');
+        const baseColors = [
+            '#0a0a14', '#141424', '#1a1a2e',
+            '#0a0a14', '#1a1a2e', '#141424',
+            '#0a0a14', '#1a1a3a', '#14142e'
+        ];
+        let cycle = 0;
+
+        function updateGradient() {
+            cycle = (cycle + 1) % 3;
+            const offset = cycle * 3;
+            gradientEl.style.background = `linear-gradient(
+                135deg,
+                ${baseColors[offset]} 0%,
+                ${baseColors[offset + 1]} 50%,
+                ${baseColors[offset + 2]} 100%
+            )`;
+        }
+
+        // Change gradient every 15 seconds
+        setInterval(updateGradient, 15000);
+    </script>
+</body>
+</html>
