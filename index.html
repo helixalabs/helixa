@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helixa — Exact Header + Footer</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -213,6 +214,11 @@
             color: var(--teal);
         }
 
+        /* Footer icon hover */
+        footer a:hover {
+            color: var(--teal) !important;
+        }
+
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .nav-links, .nav .connect-btn {
@@ -248,6 +254,9 @@
             footer div[style*="display: flex"] {
                 flex-wrap: wrap;
                 gap: 0.75rem;
+            }
+            footer a {
+                font-size: 1rem !important;
             }
 
 
@@ -430,13 +439,21 @@
         </div>
         
         <div style="display: flex; align-items: center; gap: 1.5rem;">
-            <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;">GitHub</a>
+            <a href="https://github.com/helixalabs" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fab fa-github"></i>
+            </a>
             <span style="color: rgba(255, 255, 255, 0.3);">•</span>
-            <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;">Twitter</a>
+            <a href="https://x.com/HelixaXYZ" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fab fa-x-twitter"></i>
+            </a>
             <span style="color: rgba(255, 255, 255, 0.3);">•</span>
-            <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;">Docs</a>
+            <a href="https://docs.openclaw.ai" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fas fa-book"></i>
+            </a>
             <span style="color: rgba(255, 255, 255, 0.3);">•</span>
-            <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;">OpenSea</a>
+            <a href="https://opensea.io/collection/helixa" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fas fa-ship"></i>
+            </a>
         </div>
     </footer>
 
