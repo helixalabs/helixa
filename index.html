@@ -425,12 +425,13 @@
     </footer>
 
     <script>
-        // Mobile overlay toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        
-        console.log('Mobile menu button found:', mobileMenuBtn);
-        console.log('Mobile overlay found:', mobileOverlay);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile overlay toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            console.log('Mobile menu button found:', mobileMenuBtn);
+            console.log('Mobile overlay found:', mobileOverlay);
         
         mobileMenuBtn.addEventListener('click', () => {
             console.log('Hamburger clicked');
@@ -455,6 +456,7 @@
                 mobileMenuBtn.children[2].style.transform = 'none';
             });
         });
+        }); // DOMContentLoaded
 
         // Matrix rain animation - falling vertical particles
         const canvas = document.getElementById('bgCanvas');
