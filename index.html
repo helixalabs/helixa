@@ -89,7 +89,7 @@
         /* Header links - capitalized and narrow */
         .nav-links {
             display: flex;
-            gap: 1rem; /* Narrow gap */
+            gap: 1rem;
             align-items: center;
         }
 
@@ -101,7 +101,7 @@
             text-decoration: none;
             transition: color 0.2s;
             position: relative;
-            text-transform: uppercase; /* Capitalized */
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
@@ -120,7 +120,7 @@
             background: transparent;
             border: 2px solid;
             border-image: var(--dna-gradient) 1;
-            border-radius: 10px; /* 10px radius */
+            border-radius: 10px;
             padding: 0.75rem 1.75rem;
             font-size: 0.95rem;
             font-weight: 600;
@@ -128,7 +128,7 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            text-transform: uppercase; /* CONNECT capitalized */
+            text-transform: uppercase;
         }
 
         .connect-btn::before {
@@ -162,7 +162,7 @@
             width: 100%;
         }
 
-        /* Footer - cloned from helixa.xyz */
+        /* EXACT Helixa footer */
         .footer {
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -183,11 +183,21 @@
             gap: 1rem;
         }
 
+        .footer-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--teal);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
 
         .footer-link {
@@ -195,10 +205,16 @@
             text-decoration: none;
             transition: color 0.2s;
             font-size: 0.85rem;
+            font-weight: 500;
         }
 
         .footer-link:hover {
             color: var(--teal);
+        }
+
+        .footer-separator {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 0.5rem;
         }
 
         .footer-copyright {
@@ -230,24 +246,25 @@
             <h1 style="font-family: 'Orbitron', sans-serif; color: #6eecd8; margin-bottom: 1rem;">Helixa Header + Footer</h1>
             <p style="color: #9a92c0; max-width: 600px; margin: 0 auto; line-height: 1.6;">
                 Header links capitalized and narrow. CONNECT button with 10px radius.<br>
-                Footer cloned from helixa.xyz with glass effect.
+                Exact footer: HELIXA PROTOCOL - GitHub - Twitter - Docs - OpenSea
             </p>
-        </div>">
+        </div>
     </main>
 
     <footer class="footer">
         <div class="footer-content">
+            <div class="footer-brand">HELIXA PROTOCOL</div>
             <div class="footer-links">
-                <a href="#" class="footer-link">Docs</a>
-                <a href="#" class="footer-link">API</a>
                 <a href="#" class="footer-link">GitHub</a>
+                <span class="footer-separator">•</span>
                 <a href="#" class="footer-link">Twitter</a>
-                <a href="#" class="footer-link">Discord</a>
-                <a href="#" class="footer-link">Terms</a>
-                <a href="#" class="footer-link">Privacy</a>
+                <span class="footer-separator">•</span>
+                <a href="#" class="footer-link">Docs</a>
+                <span class="footer-separator">•</span>
+                <a href="#" class="footer-link">OpenSea</a>
             </div>
             <div class="footer-copyright">
-                &copy; 2026 Helixa Labs. Onchain identity, reputation, and Cred Scores for AI agents on Base.
+                Onchain identity, reputation, and Cred Scores for AI agents on Base.
             </div>
         </div>
     </footer>
