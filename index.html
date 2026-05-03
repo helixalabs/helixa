@@ -190,10 +190,33 @@
             padding: 1rem 2rem;
         }
 
+        .mobile-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text2);
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .mobile-close-btn:hover {
+            color: var(--teal);
+        }
+
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .nav-links, .connect-btn {
-                display: none;
+            .nav-links, .nav .connect-btn {
+                display: none; /* Only hide header Connect button */
             }
             .mobile-menu-btn {
                 display: flex;
@@ -455,6 +478,19 @@
             document.body.style.overflow = isOpen ? 'auto' : 'hidden';
         });
 
+        // Close button in overlay
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        if (mobileCloseBtn) {
+            mobileCloseBtn.addEventListener('click', () => {
+                mobileOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Reset hamburger
+                mobileMenuBtn.children[0].style.transform = 'none';
+                mobileMenuBtn.children[1].style.opacity = '1';
+                mobileMenuBtn.children[2].style.transform = 'none';
+            });
+        }
+
         // Close overlay when clicking a link
         mobileOverlay.querySelectorAll('a, .connect-btn').forEach(link => {
             link.addEventListener('click', () => {
@@ -538,6 +574,7 @@
     
     <!-- Mobile Overlay Navigation -->
     <div class="mobile-overlay" id="mobileOverlay">
+        <button class="mobile-close-btn" id="mobileCloseBtn">×</button>
         <div class="mobile-overlay-content">
             <a href="#" class="active">HOME</a>
             <a href="#">AGENTS</a>
