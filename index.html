@@ -264,60 +264,68 @@
     </footer>
 
     <script>
-        // Simple canvas animation similar to synagent.helixa.xyz
+        // Matrix rain animation - falling vertical particles
         const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
         
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        const particles = [];
-        const colors = [
-            'rgba(110, 236, 216, 0.15)',  // teal
-            'rgba(128, 208, 255, 0.15)',   // blue
-            'rgba(180, 144, 255, 0.15)',   // lavender
-            'rgba(245, 160, 208, 0.15)'    // pink
-        ];
+        const columns = Math.floor(canvas.width / 20);
+        const drops = [];
         
-        // Create particles
-        for (let i = 0; i < 80; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2 + 0.5,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                speedX: (Math.random() - 0.5) * 0.3,
-                speedY: (Math.random() - 0.5) * 0.3,
-                opacity: Math.random() * 0.5 + 0.1
-            });
+        // Initialize drops for each column
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * canvas.height;
+        }
+        
+        // Matrix characters (simplified)
+        const chars = ['0', '1', '·', '·', '·'];
+        
+        function draw() {
+            // Semi-transparent black overlay for trail effect
+            ctx.fillStyle = 'rgba(10, 10, 20, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Helixa colors for matrix rain
+            const colors = [
+                'rgba(110, 236, 216, 0.8)',  // bright teal
+                'rgba(110, 236, 216, 0.6)',  // medium teal
+                'rgba(110, 236, 216, 0.4)',  // faint teal
+            ];
+            
+            ctx.font = '14px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const x = i * 20;
+                const y = drops[i];
+                
+                // Random character
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                
+                // Color based on position (brighter at head)
+                const colorIndex = Math.floor((y % 60) / 20);
+                ctx.fillStyle = colors[colorIndex];
+                
+                ctx.fillText(char, x, y);
+                
+                // Move drop down
+                drops[i] += 15;
+                
+                // Reset if off screen
+                if (drops[i] > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+            }
         }
         
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(p => {
-                p.x += p.speedX;
-                p.y += p.speedY;
-                
-                // Wrap around edges
-                if (p.x < 0) p.x = canvas.width;
-                if (p.x > canvas.width) p.x = 0;
-                if (p.y < 0) p.y = canvas.height;
-                if (p.y > canvas.height) p.y = 0;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.opacity;
-                ctx.fill();
-            });
-            
+            draw();
             requestAnimationFrame(animate);
         }
         
         animate();
         
-        // Resize canvas on window resize
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
