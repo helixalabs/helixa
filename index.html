@@ -56,7 +56,7 @@
             width: 100%;
             height: 100%;
             z-index: -1; /* Above grid */
-            opacity: 0.35; /* More visible */
+            opacity: 0.6; /* Much more visible */
             pointer-events: none;
         }
 
@@ -171,7 +171,7 @@
         }
 
         .connect-btn:hover {
-            color: #0a0a0f; /* Dark on hover when gradient fills */
+            color: var(--teal); /* Stay teal on hover */
         }
 
         .connect-btn:hover::before {
@@ -277,9 +277,9 @@
             
             // Helixa colors for matrix rain - 20% less opacity
             const colors = [
-                'rgba(110, 236, 216, 0.32)',  // bright teal (0.8 * 0.4)
-                'rgba(110, 236, 216, 0.24)',  // medium teal (0.6 * 0.4)
-                'rgba(110, 236, 216, 0.16)',  // faint teal (0.4 * 0.4)
+                'rgba(110, 236, 216, 0.6)',  // bright teal
+                'rgba(110, 236, 216, 0.4)',  // medium teal
+                'rgba(110, 236, 216, 0.2)',  // faint teal
             ];
             
             ctx.font = '21px monospace'; // 50% larger (14px → 21px)
