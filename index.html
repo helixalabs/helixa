@@ -211,7 +211,33 @@
     </nav>
 
     <main class="main-content">
-        <!-- Empty hero section -->
+        <div class="hero-section" style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            text-align: center;
+            position: relative;
+            min-height: 60vh;
+        ">
+            <h1 style="
+                font-family: 'Orbitron', sans-serif;
+                font-size: clamp(3rem, 8vw, 6rem);
+                font-weight: 700;
+                line-height: 1.1;
+                margin-bottom: 32px;
+                max-width: 900px;
+                background: var(--dna-gradient);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                background-size: 200% 100%;
+                animation: 6s ease-in-out infinite holo-shimmer;
+            ">
+                Every Agent Has a Story.
+            </h1>
+        </div>
     </main>
 
     <!-- EXACT footer - matches header: no centered wrapper -->
