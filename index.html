@@ -142,9 +142,57 @@
             transition: 0.3s;
         }
 
+        /* Mobile overlay navigation */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(8, 8, 16, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .mobile-overlay-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .mobile-overlay a {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text2);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .mobile-overlay a:hover,
+        .mobile-overlay a.active {
+            color: var(--teal);
+        }
+
+        .mobile-overlay .connect-btn {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+        }
+
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-links, .connect-btn {
                 display: none;
             }
             .mobile-menu-btn {
@@ -377,17 +425,29 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Mobile overlay toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.querySelector('.nav-links');
+        const mobileOverlay = document.getElementById('mobileOverlay');
         
         mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = navLinks.style.display === 'flex';
-            navLinks.style.display = isOpen ? 'none' : 'flex';
-            mobileMenuBtn.style.gap = isOpen ? '4px' : '0';
+            const isOpen = mobileOverlay.style.display === 'flex';
+            mobileOverlay.style.display = isOpen ? 'none' : 'flex';
             mobileMenuBtn.children[0].style.transform = isOpen ? 'none' : 'rotate(45deg) translate(5px, 5px)';
             mobileMenuBtn.children[1].style.opacity = isOpen ? '1' : '0';
             mobileMenuBtn.children[2].style.transform = isOpen ? 'none' : 'rotate(-45deg) translate(5px, -5px)';
+            // Prevent body scroll when overlay open
+            document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+        });
+
+        // Close overlay when clicking a link
+        mobileOverlay.querySelectorAll('a, .connect-btn').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                mobileMenuBtn.children[0].style.transform = 'none';
+                mobileMenuBtn.children[1].style.opacity = '1';
+                mobileMenuBtn.children[2].style.transform = 'none';
+            });
         });
 
         // Matrix rain animation - falling vertical particles
@@ -457,5 +517,17 @@
             canvas.height = window.innerHeight;
         });
     </script>
+    
+    <!-- Mobile Overlay Navigation -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-overlay-content">
+            <a href="#" class="active">HOME</a>
+            <a href="#">AGENTS</a>
+            <a href="#">CRED</a>
+            <a href="#">GRAPH</a>
+            <a href="#">SERVICES</a>
+            <button class="connect-btn">CONNECT</button>
+        </div>
+    </div>
 </body>
 </html>
