@@ -37,48 +37,50 @@
             flex-direction: column;
         }
 
-        /* Animated background - similar to synagent.helixa.xyz */
-        .gradient-bg {
+        /* EXACT background from synagent.helixa.xyz - adjusted colors */
+        .background-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #0a0a14 0%, #0e0e1a 25%, #13132a 50%, #0e0e1a 75%, #0a0a14 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
+            background: #0a0a14;
+            overflow: hidden;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Subtle particles */
-        .particles {
+        /* Canvas for particles (matching theirs) */
+        .bg-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            opacity: 0.18;
             pointer-events: none;
         }
 
-        .particle {
-            position: absolute;
-            background: rgba(110, 236, 216, 0.15);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
+        /* Grid lines (repeating-linear-gradient) */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.22;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(110, 236, 216, 0.04) 3px);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        /* Center radial glow */
+        .bg-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(110, 236, 216, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         /* EXACT Helixa header */
@@ -199,8 +201,12 @@
     </style>
 </head>
 <body>
-    <div class="gradient-bg"></div>
-    <div class="particles" id="particles"></div>
+    <!-- EXACT background from synagent.helixa.xyz -->
+    <div class="background-container">
+        <canvas class="bg-canvas" id="bgCanvas"></canvas>
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
+    </div>
 
     <nav class="nav">
         <div class="nav-logo-text">helixa.xyz</div>
@@ -258,34 +264,64 @@
     </footer>
 
     <script>
-        // Generate particles
-        const particlesContainer = document.getElementById('particles');
+        // Simple canvas animation similar to synagent.helixa.xyz
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
         const colors = [
-            'rgba(110, 236, 216, 0.1)',  // teal
-            'rgba(128, 208, 255, 0.1)',   // blue
-            'rgba(180, 144, 255, 0.1)',   // lavender
-            'rgba(245, 160, 208, 0.1)'    // pink
+            'rgba(110, 236, 216, 0.15)',  // teal
+            'rgba(128, 208, 255, 0.15)',   // blue
+            'rgba(180, 144, 255, 0.15)',   // lavender
+            'rgba(245, 160, 208, 0.15)'    // pink
         ];
-
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            const size = Math.random() * 4 + 1;
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            const left = Math.random() * 100;
-            const delay = Math.random() * 15;
-            
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${left}vw`;
-            particle.style.top = `${100}vh`;
-            particle.style.background = color;
-            particle.style.animationDelay = `${delay}s`;
-            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
-            
-            particlesContainer.appendChild(particle);
+        
+        // Create particles
+        for (let i = 0; i < 80; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                speedX: (Math.random() - 0.5) * 0.3,
+                speedY: (Math.random() - 0.5) * 0.3,
+                opacity: Math.random() * 0.5 + 0.1
+            });
         }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                
+                // Wrap around edges
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
+                ctx.fill();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
