@@ -250,10 +250,15 @@
                 gap: 0.75rem;
             }
             /* Fix systems active dot on mobile */
-            .hero-section > div[style*="display: flex"] {
+            .systems-active-badge {
                 flex-wrap: nowrap !important;
                 white-space: nowrap !important;
                 gap: 8px !important;
+                font-size: 10px !important;
+            }
+            .systems-active-badge span {
+                display: inline-block !important;
+                vertical-align: middle !important;
             }
 
         }
@@ -350,7 +355,7 @@
             position: relative;
             min-height: 60vh;
         ">
-            <div style="
+            <div class="systems-active-badge" style="
                 display: flex;
                 align-items: center;
                 gap: 12px;
