@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helixa — Exact Header + Footer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a14;
+            --bg2: #0e0e1a;
+            --surface: #13132a;
+            --text: #f0eeff;
+            --text2: #9a92c0;
+            --teal: #6eecd8;
+            --cool: #80d0ff;
+            --warm: #f5a0d0;
+            --dna-gradient: linear-gradient(135deg, #6eecd8, #80d0ff, #b490ff, #f5a0d0, #6eecd8);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* EXACT background from synagent.helixa.xyz - adjusted colors */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #0a0a14;
+            overflow: hidden;
+        }
+
+        /* Canvas for particles (matching theirs) */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Above grid */
+            opacity: 0.18; /* Original subtle */
+            pointer-events: none;
+        }
+
+        /* Grid lines (repeating-linear-gradient) */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -2; /* Behind canvas */
+            pointer-events: none;
+            opacity: 0.22;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(110, 236, 216, 0.04) 3px);
+        }
+
+
+
+        /* EXACT Helixa header */
+        .nav {
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(8, 8, 16, 0.5); /* 50% opacity */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            align-items: center;
+            height: 64px;
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0 2rem;
+            justify-content: space-between;
+        }
+
+        /* Logo: helixa.xyz */
+        .nav-logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--dna-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            background-size: 200% 100%;
+            animation: 6s ease-in-out infinite holo-shimmer;
+        }
+
+        @keyframes holo-shimmer {
+            0% { background-position: 0%; }
+            50% { background-position: 100%; }
+            100% { background-position: 0%; }
+        }
+
+        /* Header links - capitalized and narrow */
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Mobile menu button (hidden by default) */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            padding: 0;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--text2);
+            border-radius: 1px;
+            transition: 0.3s;
+        }
+
+        /* Mobile overlay navigation */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(8, 8, 16, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .mobile-overlay-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .mobile-overlay a {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text2);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .mobile-overlay a:hover,
+        .mobile-overlay a.active {
+            color: var(--teal);
+        }
+
+        .mobile-overlay .connect-btn {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+        }
+
+        .mobile-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text2);
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .mobile-close-btn:hover {
+            color: var(--teal);
+        }
+
+        /* Footer icon hover */
+        footer a:hover {
+            color: var(--teal) !important;
+        }
+
+
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-links, .nav .connect-btn {
+                display: none; /* Only hide header Connect button */
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .nav {
+                padding: 0 1rem;
+            }
+            .hero-section {
+                padding: 100px 1rem 60px;
+            }
+            .hero-section h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+            .hero-section p {
+                font-size: clamp(0.9rem, 3vw, 1.2rem);
+            }
+            .hero-section div[style*="display: flex; gap: 1.5rem; margin-top: 2rem"] {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                max-width: 300px;
+            }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            footer div[style*="display: flex"] {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+            footer a {
+                font-size: 1.1rem !important; /* 10% bigger */
+            }
+            /* Aura faces on mobile - force horizontal */
+            .aura-faces {
+                flex-wrap: nowrap !important;
+                gap: 0.75rem !important;
+                overflow-x: auto !important;
+                padding: 0.5rem !important;
+                justify-content: flex-start !important;
+                display: flex !important;
+            }
+            .aura-faces img {
+                width: 40px !important;
+                height: 40px !important;
+                flex-shrink: 0 !important;
+            }
+
+
+        }
+
+        .nav-link {
+            color: var(--text2);
+            padding: 0.5rem 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Orbitron', sans-serif; /* Match branding */
+        }
+
+        .nav-link:hover {
+            color: var(--teal); /* Same as active, not white */
+        }
+
+        .nav-link.active {
+            color: var(--teal);
+        }
+
+        /* CONNECT button - 1px purple border, 10px radius, purple text, Orbitron */
+        .connect-btn {
+            font-family: 'Orbitron', sans-serif; /* Match branding */
+            cursor: pointer;
+            background: transparent;
+            border-radius: 10px;
+            padding: 0.75rem 1.75rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text2); /* Purple text */
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            border: 1px solid var(--text2); /* Purple border */
+            letter-spacing: 0.5px;
+        }
+
+        .connect-btn:hover {
+            color: var(--teal); /* Teal on hover */
+            border-color: var(--teal); /* Teal border on hover */
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- EXACT background from synagent.helixa.xyz -->
+    <div class="background-container">
+        <canvas class="bg-canvas" id="bgCanvas"></canvas>
+        <div class="bg-grid"></div>
+    </div>
+
+    <nav class="nav">
+        <div class="nav-logo-text">helixa.xyz</div>
+        
+        <div class="nav-links">
+            <a href="#" class="nav-link active">HOME</a>
+            <a href="#" class="nav-link">AGENTS</a>
+            <a href="#" class="nav-link">CRED</a>
+            <a href="#" class="nav-link">GRAPH</a>
+            <a href="#" class="nav-link">SERVICES</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <button class="connect-btn">CONNECT</button>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero-section" style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            text-align: center;
+            position: relative;
+            min-height: 60vh;
+        ">
+
+            <p style="
+                font-family: 'Orbitron', sans-serif; /* Match helixa.xyz branding */
+                font-size: clamp(0.75rem, 2vw, 1.5rem); /* Half the size */
+                color: var(--teal); /* Teal */
+                margin-bottom: 16px;
+                max-width: 600px;
+                line-height: 1.4;
+                letter-spacing: 0.5px;
+            ">
+                The Identity Layer for AI Agents
+            </p>
+            
+            <h1 style="
+                font-family: 'Orbitron', sans-serif;
+                font-size: clamp(2.25rem, 6vw, 4.5rem); /* Reduced by 25% */
+                font-weight: 700;
+                line-height: 1.1;
+                margin-bottom: 32px;
+                max-width: 900px;
+            ">
+                <span style="color: var(--text2);">Every </span>
+                <span style="
+                    background: var(--dna-gradient);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                    background-size: 200% 100%;
+                    animation: 6s ease-in-out infinite holo-shimmer;
+                ">AGENT</span>
+                <span style="color: var(--text2);"><br>Deserves A Story.</span>
+            </h1>
+            
+            <!-- AURA FACES - Actual NFT image placeholders -->
+            <div class="aura-faces" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 32px;">
+                <img src="https://picsum.photos/80/80?seed=helixa1" style="width: 80px; height: 80px; border-radius: 12px; border: 1px solid rgba(110, 236, 216, 0.3); box-shadow: 0 0 20px rgba(110, 236, 216, 0.2); object-fit: cover;">
+                <img src="https://picsum.photos/80/80?seed=helixa2" style="width: 80px; height: 80px; border-radius: 12px; border: 1px solid rgba(128, 208, 255, 0.3); box-shadow: 0 0 20px rgba(128, 208, 255, 0.2); object-fit: cover;">
+                <img src="https://picsum.photos/80/80?seed=helixa3" style="width: 80px; height: 80px; border-radius: 12px; border: 1px solid rgba(180, 144, 255, 0.3); box-shadow: 0 0 20px rgba(180, 144, 255, 0.2); object-fit: cover;">
+                <img src="https://picsum.photos/80/80?seed=helixa4" style="width: 80px; height: 80px; border-radius: 12px; border: 1px solid rgba(245, 160, 208, 0.3); box-shadow: 0 0 20px rgba(245, 160, 208, 0.2); object-fit: cover;">
+            </div>
+            
+            <div style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+                <button class="connect-btn">I'm Human</button>
+                <button class="connect-btn">I'm An Agent</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- EXACT footer - matches header: no centered wrapper -->
+    <footer style="
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(8, 8, 16, 0.7);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 2rem;
+        margin-top: auto;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        color: #9a92c0;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    ">
+        <div style="
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #6eecd8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        ">
+            HELIXA PROTOCOL
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="https://github.com/helixalabs" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fab fa-github"></i>
+            </a>
+            <span style="color: rgba(255, 255, 255, 0.3);">•</span>
+            <a href="https://x.com/HelixaXYZ" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fab fa-x"></i>
+            </a>
+            <span style="color: rgba(255, 255, 255, 0.3);">•</span>
+            <a href="https://docs.openclaw.ai" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fas fa-book"></i>
+            </a>
+            <span style="color: rgba(255, 255, 255, 0.3);">•</span>
+            <a href="https://opensea.io/collection/helixa" target="_blank" style="color: #9a92c0; text-decoration: none; transition: color 0.2s; font-size: 1.2rem;">
+                <i class="fas fa-ship"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile overlay toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            console.log('Mobile menu button found:', mobileMenuBtn);
+            console.log('Mobile overlay found:', mobileOverlay);
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            console.log('Hamburger clicked');
+            const isOpen = mobileOverlay.style.display === 'flex';
+            console.log('Is open:', isOpen);
+            mobileOverlay.style.display = isOpen ? 'none' : 'flex';
+            console.log('Overlay display set to:', mobileOverlay.style.display);
+            // Better X transformation
+            if (isOpen) {
+                // Reset to hamburger
+                mobileMenuBtn.children[0].style.transform = 'none';
+                mobileMenuBtn.children[1].style.opacity = '1';
+                mobileMenuBtn.children[2].style.transform = 'none';
+            } else {
+                // Transform to clear X
+                mobileMenuBtn.children[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                mobileMenuBtn.children[1].style.opacity = '0';
+                mobileMenuBtn.children[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+            }
+            // Prevent body scroll when overlay open
+            document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+        });
+
+        // Close button in overlay
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        if (mobileCloseBtn) {
+            mobileCloseBtn.addEventListener('click', () => {
+                mobileOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Reset hamburger
+                mobileMenuBtn.children[0].style.transform = 'none';
+                mobileMenuBtn.children[1].style.opacity = '1';
+                mobileMenuBtn.children[2].style.transform = 'none';
+            });
+        }
+
+        // Close overlay when clicking a link
+        mobileOverlay.querySelectorAll('a, .connect-btn').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Reset hamburger
+                mobileMenuBtn.children[0].style.transform = 'none';
+                mobileMenuBtn.children[1].style.opacity = '1';
+                mobileMenuBtn.children[2].style.transform = 'none';
+            });
+        });
+        }); // DOMContentLoaded
+
+        // Matrix rain animation - falling vertical particles
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const columns = Math.floor(canvas.width / 12); // 12px apart
+        const drops = [];
+        
+        // Initialize drops for each column
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * canvas.height;
+        }
+        
+        // Matrix characters - random letters/digits
+        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz·*+-=<>';
+        
+        function draw() {
+            // Semi-transparent black overlay for trail effect
+            ctx.fillStyle = 'rgba(10, 10, 20, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Helixa colors for matrix rain - subtle
+            const colors = [
+                'rgba(110, 236, 216, 0.32)',  // bright teal
+                'rgba(110, 236, 216, 0.24)',  // medium teal
+                'rgba(110, 236, 216, 0.16)',  // faint teal
+            ];
+            
+            ctx.font = '21px monospace'; // 50% larger (14px → 21px)
+            
+            for (let i = 0; i < drops.length; i++) {
+                const x = i * 12; // 12px spacing
+                const y = drops[i];
+                
+                // Random character from string
+                const char = chars.charAt(Math.floor(Math.random() * chars.length));
+                
+                // Color based on position (brighter at head)
+                const colorIndex = Math.floor((y % 60) / 20);
+                ctx.fillStyle = colors[colorIndex];
+                
+                ctx.fillText(char, x, y);
+                
+                // Move drop down - quarter speed (half of half)
+                drops[i] += 3.75;
+                
+                // Reset if off screen
+                if (drops[i] > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+            }
+        }
+        
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+    
+    <!-- Mobile Overlay Navigation -->
+    <div class="mobile-overlay" id="mobileOverlay">
+        <button class="mobile-close-btn" id="mobileCloseBtn">×</button>
+        <div class="mobile-overlay-content">
+            <a href="#" class="active">HOME</a>
+            <a href="#">AGENTS</a>
+            <a href="#">CRED</a>
+            <a href="#">GRAPH</a>
+            <a href="#">SERVICES</a>
+            <button class="connect-btn">CONNECT</button>
+        </div>
+    </div>
+</body>
+</html>

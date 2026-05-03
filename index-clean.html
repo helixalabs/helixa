@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helixa — Onchain Identity for AI Agents</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a14;
+            --bg2: #0e0e1a;
+            --surface: #13132a;
+            --text: #f0eeff;
+            --text2: #9a92c0;
+            --teal: #6eecd8;
+            --cool: #80d0ff;
+            --warm: #f5a0d0;
+            --dna-gradient: linear-gradient(135deg, #6eecd8, #80d0ff, #b490ff, #f5a0d0, #6eecd8);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Background layers */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.18;
+            pointer-events: none;
+        }
+
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.22;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(110, 236, 216, 0.04) 3px);
+        }
+
+        /* Header */
+        .nav {
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(8, 8, 16, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            align-items: center;
+            height: 64px;
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: they\n        }
