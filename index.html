@@ -287,11 +287,11 @@
             ctx.fillStyle = 'rgba(10, 10, 20, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Helixa colors for matrix rain
+            // Helixa colors for matrix rain - 20% less opacity
             const colors = [
-                'rgba(110, 236, 216, 0.8)',  // bright teal
-                'rgba(110, 236, 216, 0.6)',  // medium teal
-                'rgba(110, 236, 216, 0.4)',  // faint teal
+                'rgba(110, 236, 216, 0.64)',  // bright teal (0.8 * 0.8)
+                'rgba(110, 236, 216, 0.48)',  // medium teal (0.6 * 0.8)
+                'rgba(110, 236, 216, 0.32)',  // faint teal (0.4 * 0.8)
             ];
             
             ctx.font = '14px monospace';
@@ -309,8 +309,8 @@
                 
                 ctx.fillText(char, x, y);
                 
-                // Move drop down
-                drops[i] += 15;
+                // Move drop down - half speed
+                drops[i] += 7.5;
                 
                 // Reset if off screen
                 if (drops[i] > canvas.height && Math.random() > 0.975) {
