@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helixa — Exact Header Clone</title>
+    <title>Helixa — Exact Header</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -18,13 +18,10 @@
             --surface: #13132a;
             --text: #f0eeff;
             --text2: #9a92c0;
-            --accent: #b490ff;
-            --accent2: #8b6aff;
             --teal: #6eecd8;
             --cool: #80d0ff;
             --warm: #f5a0d0;
             --dna-gradient: linear-gradient(135deg, #6eecd8, #80d0ff, #b490ff, #f5a0d0, #6eecd8);
-            --dna-gradient-horizontal: linear-gradient(90deg, #6eecd8, #80d0ff, #b490ff, #f5a0d0, #6eecd8);
         }
 
         body {
@@ -38,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* Static gradient background - shades of #0a0a14 */
+        /* Static gradient background */
         .gradient-bg {
             position: fixed;
             top: 0;
@@ -49,7 +46,7 @@
             background: linear-gradient(135deg, #0a0a14 0%, #0e0e1a 50%, #13132a 100%);
         }
 
-        /* EXACT Helixa header clone - made glass */
+        /* EXACT Helixa header */
         .nav {
             z-index: 100;
             backdrop-filter: blur(20px);
@@ -67,6 +64,7 @@
             justify-content: space-between;
         }
 
+        /* Logo: helixa.xyz with same color-changing styling */
         .nav-logo-text {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
@@ -110,60 +108,62 @@
             color: var(--teal);
         }
 
-        .nav-link.active::after {
-            content: "";
-            background: var(--dna-gradient-horizontal);
-            border-radius: 1px;
-            height: 2px;
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
+        /* CONNECT button - outlined with same color-changing styling as logo */
+        .connect-btn {
             font-family: 'Inter', sans-serif;
             cursor: pointer;
-            border: none;
+            background: transparent;
+            border: 2px solid;
+            border-image: var(--dna-gradient) 1;
             border-radius: 14px;
             padding: 0.75rem 1.75rem;
             font-size: 0.95rem;
             font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: var(--dna-gradient);
-            color: #0a0a0f;
-            background-size: 200%;
-            box-shadow: 0 4px 20px rgba(77, 142, 255, 0.15);
-        }
-
-        .btn-primary:hover {
-            background-position: 100%;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(255, 96, 144, 0.3);
-        }
-
-        .btn-secondary {
             color: var(--text);
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-secondary:hover {
-            border-image: var(--dna-gradient-horizontal) 1;
-            background: rgba(255, 255, 255, 0.03);
-            transform: translateY(-1px);
+        .connect-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dna-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .connect-btn:hover {
+            color: #0a0a0f;
+        }
+
+        .connect-btn:hover::before {
+            opacity: 1;
         }
 
         .content {
-            padding-top:进宫
+            padding-top: 80px;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .content h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--teal);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .content p {
+            color: var(--text2);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -171,7 +171,7 @@
     <div class="gradient-bg"></div>
 
     <nav class="nav">
-        <div class="nav-logo-text">HELIXA</div>
+        <div class="nav-logo-text">helixa.xyz</div>
         
         <div class="nav-links">
             <a href="#" class="nav-link active">Home</a>
@@ -181,18 +181,16 @@
             <a href="#" class="nav-link">Services</a>
         </div>
 
-        <div class="nav-actions">
-            <button class="btn btn-primary">Connect Wallet</button>
-            <button class="btn btn-secondary">Agent Login</button>
-        </div>
+        <button class="connect-btn">Connect</button>
     </nav>
 
-    <div style="padding-top: 80px; text-align: center; padding: 2rem;">
-        <h1 style="font-family: 'Orbitron', sans-serif; color: #6eecd8; margin-bottom: 1rem;">Exact Helixa Header Clone</h1>
-        <p style="color: #9a92c0; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-            Header cloned exactly from helixa.xyz with glass effect (backdrop-filter: blur(20px)).<br>
-            Background gradient uses shades of #0a0a14 → #0e0e1a → #13132a.<br>
-            No color shifts, no animations on background.
+    <div class="content">
+        <h1>Exact Helixa Header</h1>
+        <p>
+            Logo: "helixa.xyz" with DNA gradient animation<br>
+            Only CONNECT button - outlined with same color-changing styling as logo<br>
+            No AGENT LOGIN button<br>
+            Static gradient background: #0a0a14 → #0e0e1a → #13132a
         </p>
     </div>
 </body>
