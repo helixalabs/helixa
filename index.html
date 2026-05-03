@@ -249,17 +249,7 @@
                 flex-wrap: wrap;
                 gap: 0.75rem;
             }
-            /* Fix systems active dot on mobile */
-            .systems-active-badge {
-                flex-wrap: nowrap !important;
-                white-space: nowrap !important;
-                gap: 8px !important;
-                font-size: 10px !important;
-            }
-            .systems-active-badge span {
-                display: inline-block !important;
-                vertical-align: middle !important;
-            }
+
 
         }
 
@@ -356,9 +346,7 @@
             min-height: 60vh;
         ">
             <div class="systems-active-badge" style="
-                display: flex;
-                align-items: center;
-                gap: 12px;
+                display: inline-block;
                 padding: 8px 14px;
                 border-radius: 999px;
                 border: 1px solid rgba(255, 255, 255, 0.1);
@@ -366,18 +354,7 @@
                 backdrop-filter: blur(8px);
                 margin-bottom: 24px;
                 white-space: nowrap;
-                flex-wrap: nowrap;
             ">
-                <span style="
-                    display: inline-block;
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    background: var(--teal);
-                    box-shadow: 0 0 12px rgba(110, 236, 216, 0.7);
-                    margin-right: 8px;
-                    vertical-align: middle;
-                "></span>
                 <span style="
                     font-size: 11px;
                     font-family: 'JetBrains Mono', monospace;
