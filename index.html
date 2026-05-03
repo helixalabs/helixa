@@ -3,15 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glass Header Demo</title>
+    <title>Helixa — Glass Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #0a0a14;
-            --mint: #6eecd8;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -19,14 +13,13 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-dark);
+            font-family: 'Inter', sans-serif;
+            background: #0a0a14;
             color: #fff;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Animated gradient background - slow color shift */
+        /* Static gradient background - no shift */
         .gradient-bg {
             position: fixed;
             top: 0;
@@ -34,94 +27,89 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(
-                135deg,
-                #0a0a14 0%,
-                #0d0d1a 25%,
-                #101020 50%,
-                #0d0d1a 75%,
-                #0a0a14 100%
-            );
-            background-size: 400% 400%;
-            animation: gradientShift 30s ease infinite;
+            background: linear-gradient(135deg, #0a0a14 0%, #141424 100%);
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Glass header - cloned from Helixa style */
+        /* Glass header - Helixa style */
         .glass-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             padding: 1rem 2rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             font-size: 1.5rem;
-            color: var(--mint);
+            color: #6eecd8;
             letter-spacing: 1px;
         }
 
-        /* Simple nav */
         .nav {
             display: flex;
-            gap: 1.5rem;
-            margin-left: 3rem;
+            gap: 2rem;
         }
 
         .nav a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-weight: 500;
+            font-size: 1rem;
             transition: color 0.2s;
         }
 
         .nav a:hover {
-            color: var(--mint);
+            color: #6eecd8;
         }
 
-        /* Content area */
+        .actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #6eecd8, #80d0ff);
+            color: #0a0a14;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #6eecd8;
+            color: #6eecd8;
+        }
+
         .content {
             padding-top: 80px;
             text-align: center;
-            padding: 80px 2rem 2rem;
-        }
-
-        .content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--mint);
-        }
-
-        .content p {
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
+            padding: 2rem;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="gradient-bg"></div>
 
     <header class="glass-header">
         <div class="logo">HELIXA</div>
+        
         <nav class="nav">
             <a href="#">Home</a>
             <a href="#">Agents</a>
@@ -129,39 +117,16 @@
             <a href="#">Graph</a>
             <a href="#">Services</a>
         </nav>
+
+        <div class="actions">
+            <button class="btn btn-primary">Connect Wallet</button>
+            <button class="btn btn-outline">Agent Login</button>
+        </div>
     </header>
 
     <div class="content">
-        <h1>Glass Header + Animated Gradient</h1>
-        <p>Just the glass header and slow color‑shifting gradient background, as requested.<br>No extra cards, no hero section, no footer — just the two things you asked for.</p>
+        <h1 style="color: #6eecd8; margin-bottom: 1rem;">Glass Header Only</h1>
+        <p style="color: rgba(255, 255, 255, 0.6);">Static gradient background, no color shift.<br>Header made glass with backdrop blur.</p>
     </div>
-
-    <script>
-        // Enhance gradient with very slow color variations
-        const gradient = document.querySelector('.gradient-bg');
-        const baseHue = 240; // Dark blue
-        let hueOffset = 0;
-
-        function updateGradient() {
-            hueOffset = (hueOffset + 0.1) % 20;
-            const hue1 = baseHue;
-            const hue2 = baseHue + hueOffset;
-            const hue3 = baseHue - hueOffset * 0.5;
-            
-            gradient.style.background = `linear-gradient(
-                135deg,
-                hsl(${hue1}, 70%, 4%) 0%,
-                hsl(${hue2}, 70%, 6%) 25%,
-                hsl(${hue3}, 70%, 8%) 50%,
-                hsl(${hue2}, 70%, 6%) 75%,
-                hsl(${hue1}, 70%, 4%) 100%
-            )`;
-            
-            requestAnimationFrame(updateGradient);
-        }
-
-        // Start the subtle color shift
-        updateGradient();
-    </script>
 </body>
 </html>
