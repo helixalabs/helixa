@@ -249,6 +249,12 @@
                 flex-wrap: wrap;
                 gap: 0.75rem;
             }
+            /* Fix systems active dot on mobile */
+            .hero-section > div[style*="display: flex"] {
+                flex-wrap: nowrap !important;
+                white-space: nowrap !important;
+                gap: 8px !important;
+            }
 
         }
 
