@@ -37,7 +37,7 @@
             flex-direction: column;
         }
 
-        /* Static gradient background */
+        /* Animated background - similar to synagent.helixa.xyz */
         .gradient-bg {
             position: fixed;
             top: 0;
@@ -45,7 +45,40 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #0a0a14 0%, #0e0e1a 50%, #13132a 100%);
+            background: linear-gradient(135deg, #0a0a14 0%, #0e0e1a 25%, #13132a 50%, #0e0e1a 75%, #0a0a14 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Subtle particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(110, 236, 216, 0.15);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
         /* EXACT Helixa header */
@@ -167,6 +200,7 @@
 </head>
 <body>
     <div class="gradient-bg"></div>
+    <div class="particles" id="particles"></div>
 
     <nav class="nav">
         <div class="nav-logo-text">helixa.xyz</div>
@@ -183,12 +217,7 @@
     </nav>
 
     <main class="main-content">
-        <div style="text-align: center; padding: 2rem;">
-            <h1 style="font-family: 'Orbitron', sans-serif; color: #6eecd8; margin-bottom: 1rem;">Helixa Header + Footer</h1>
-            <p style="color: #9a92c0; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                Exact match to helixa.xyz styling.
-            </p>
-        </div>
+        <!-- Empty hero section -->
     </main>
 
     <!-- EXACT footer - matches header: no centered wrapper -->
@@ -227,5 +256,36 @@
             <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s;">OpenSea</a>
         </div>
     </footer>
+
+    <script>
+        // Generate particles
+        const particlesContainer = document.getElementById('particles');
+        const colors = [
+            'rgba(110, 236, 216, 0.1)',  // teal
+            'rgba(128, 208, 255, 0.1)',   // blue
+            'rgba(180, 144, 255, 0.1)',   // lavender
+            'rgba(245, 160, 208, 0.1)'    // pink
+        ];
+
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 4 + 1;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const left = Math.random() * 100;
+            const delay = Math.random() * 15;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}vw`;
+            particle.style.top = `${100}vh`;
+            particle.style.background = color;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+    </script>
 </body>
 </html>
