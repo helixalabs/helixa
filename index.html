@@ -259,7 +259,7 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        const columns = Math.floor(canvas.width / 20);
+        const columns = Math.floor(canvas.width / 2); // 2px apart (dense)
         const drops = [];
         
         // Initialize drops for each column
@@ -282,10 +282,10 @@
                 'rgba(110, 236, 216, 0.16)',  // faint teal (0.4 * 0.4)
             ];
             
-            ctx.font = '14px monospace';
+            ctx.font = '21px monospace'; // 50% larger (14px → 21px)
             
             for (let i = 0; i < drops.length; i++) {
-                const x = i * 20;
+                const x = i * 2; // 2px spacing
                 const y = drops[i];
                 
                 // Random character from string
