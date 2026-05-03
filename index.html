@@ -219,6 +219,19 @@
             color: var(--teal) !important;
         }
 
+        /* Systems active badge hover */
+        .systems-active-badge {
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .systems-active-badge:hover {
+            background: var(--teal);
+            border-color: var(--teal);
+        }
+        .systems-active-badge:hover span {
+            color: var(--bg); /* Dark background color when teal fills */
+        }
+
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .nav-links, .nav .connect-btn {
@@ -356,11 +369,10 @@
         ">
             <div class="systems-active-badge" style="
                 display: inline-block;
-                padding: 8px 14px;
-                border-radius: 999px;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                background: rgba(8, 8, 16, 0.7);
-                backdrop-filter: blur(8px);
+                padding: 0.5rem 1rem;
+                border-radius: 10px;
+                border: 1px solid var(--teal);
+                background: transparent;
                 margin-bottom: 24px;
                 white-space: nowrap;
             ">
@@ -368,7 +380,7 @@
                     font-size: 11px;
                     font-family: 'JetBrains Mono', monospace;
                     letter-spacing: 0.12em;
-                    color: var(--text);
+                    color: var(--teal);
                     text-transform: uppercase;
                     white-space: nowrap;
                 ">SYSTEMS ACTIVE 05.03.2026</span>
