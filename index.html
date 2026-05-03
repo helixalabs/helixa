@@ -429,9 +429,15 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileOverlay = document.getElementById('mobileOverlay');
         
+        console.log('Mobile menu button found:', mobileMenuBtn);
+        console.log('Mobile overlay found:', mobileOverlay);
+        
         mobileMenuBtn.addEventListener('click', () => {
+            console.log('Hamburger clicked');
             const isOpen = mobileOverlay.style.display === 'flex';
+            console.log('Is open:', isOpen);
             mobileOverlay.style.display = isOpen ? 'none' : 'flex';
+            console.log('Overlay display set to:', mobileOverlay.style.display);
             mobileMenuBtn.children[0].style.transform = isOpen ? 'none' : 'rotate(45deg) translate(5px, 5px)';
             mobileMenuBtn.children[1].style.opacity = isOpen ? '1' : '0';
             mobileMenuBtn.children[2].style.transform = isOpen ? 'none' : 'rotate(-45deg) translate(5px, -5px)';
