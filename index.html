@@ -260,6 +260,18 @@
             footer a {
                 font-size: 1.1rem !important; /* 10% bigger */
             }
+            /* Aura faces on mobile */
+            .aura-faces {
+                flex-wrap: nowrap;
+                gap: 0.75rem !important;
+                overflow-x: auto;
+                padding: 0.5rem;
+                justify-content: flex-start;
+            }
+            .aura-faces img {
+                width: 50px !important;
+                height: 50px !important;
+            }
 
 
         }
@@ -390,7 +402,7 @@
             </h1>
             
             <!-- AURA FACES - Actual NFT image placeholders -->
-            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 32px;">
+            <div class="aura-faces" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 32px;">
                 <img src="https://picsum.photos/80/80?seed=helixa1" style="width: 80px; height: 80px; border-radius: 12px; border: 1px solid rgba(110, 236, 216, 0.3); box-shadow: 0 0 20px rgba(110, 236, 216, 0.2); object-fit: cover;">
                 <img src="https://picsum.photos/80/80?seed=helixa2" style="width: 80px; height: 80px; border-radius: 12px; border: 1px solid rgba(128, 208, 255, 0.3); box-shadow: 0 0 20px rgba(128, 208, 255, 0.2); object-fit: cover;">
                 <img src="https://picsum.photos/80/80?seed=helixa3" style="width: 80px; height: 80px; border-radius: 12px; border: 1px solid rgba(180, 144, 255, 0.3); box-shadow: 0 0 20px rgba(180, 144, 255, 0.2); object-fit: cover;">
