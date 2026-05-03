@@ -260,17 +260,19 @@
             footer a {
                 font-size: 1.1rem !important; /* 10% bigger */
             }
-            /* Aura faces on mobile */
+            /* Aura faces on mobile - force horizontal */
             .aura-faces {
-                flex-wrap: nowrap;
+                flex-wrap: nowrap !important;
                 gap: 0.75rem !important;
-                overflow-x: auto;
-                padding: 0.5rem;
-                justify-content: flex-start;
+                overflow-x: auto !important;
+                padding: 0.5rem !important;
+                justify-content: flex-start !important;
+                display: flex !important;
             }
             .aura-faces img {
-                width: 50px !important;
-                height: 50px !important;
+                width: 40px !important;
+                height: 40px !important;
+                flex-shrink: 0 !important;
             }
 
 
