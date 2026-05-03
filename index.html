@@ -130,7 +130,7 @@
         }
 
         .nav-link:hover {
-            color: var(--text);
+            color: var(--teal); /* Same as active, not white */
         }
 
         .nav-link.active {
@@ -259,7 +259,7 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        const columns = Math.floor(canvas.width / 10); // 10px apart
+        const columns = Math.floor(canvas.width / 12); // 12px apart
         const drops = [];
         
         // Initialize drops for each column
@@ -285,7 +285,7 @@
             ctx.font = '21px monospace'; // 50% larger (14px → 21px)
             
             for (let i = 0; i < drops.length; i++) {
-                const x = i * 10; // 10px spacing
+                const x = i * 12; // 12px spacing
                 const y = drops[i];
                 
                 // Random character from string
