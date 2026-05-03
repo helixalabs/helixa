@@ -161,18 +161,6 @@
             margin: 0 auto;
             width: 100%;
         }
-
-        /* EXACT Helixa footer - matching helixa.xyz styling */
-        .footer {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(8, 8, 16, 0.7);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            text-align: center;
-            margin-top: auto;
-            font-family: 'Inter', sans-serif;
-        }
     </style>
 </head>
 <body>
@@ -201,41 +189,33 @@
         </div>
     </main>
 
-    <!-- EXACT footer styling -->
+    <!-- EXACT footer - inline layout like helixa.xyz -->
     <footer style="
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         background: rgba(8, 8, 16, 0.7);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 2rem;
-        text-align: center;
+        padding: 1rem 2rem;
         margin-top: auto;
         font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        color: #9a92c0;
     ">
-        <div style="max-width: 1200px; margin: 0 auto;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <!-- Left: HELIXA PROTOCOL -->
             <div style="
                 font-family: 'Orbitron', sans-serif;
                 font-weight: 700;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 color: #6eecd8;
                 letter-spacing: 1px;
-                margin-bottom: 1rem;
                 text-transform: uppercase;
             ">
                 HELIXA PROTOCOL
             </div>
             
-            <div style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 1.5rem;
-                flex-wrap: wrap;
-                color: #9a92c0;
-                font-size: 0.9rem;
-                font-weight: 500;
-                margin-bottom: 1rem;
-            ">
+            <!-- Center: Links inline -->
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
                 <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s;">GitHub</a>
                 <span style="color: rgba(255, 255, 255, 0.3);">•</span>
                 <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s;">Twitter</a>
@@ -245,12 +225,9 @@
                 <a href="#" style="color: #9a92c0; text-decoration: none; transition: color 0.2s;">OpenSea</a>
             </div>
             
-            <div style="
-                color: rgba(255, 255, 255, 0.4);
-                font-size: 0.8rem;
-                margin-top: 1rem;
-            ">
-                Onchain identity, reputation, and Cred Scores for AI agents on Base.
+            <!-- Right: Copyright -->
+            <div style="color: rgba(255, 255, 255, 0.4); font-size: 0.8rem; text-align: right;">
+                Onchain identity, reputation, and Cred Scores
             </div>
         </div>
     </footer>
