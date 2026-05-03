@@ -55,8 +55,8 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            z-index: -2; /* Behind grid, above background */
-            opacity: 0.18;
+            z-index: -1; /* Above grid */
+            opacity: 0.35; /* More visible */
             pointer-events: none;
         }
 
@@ -64,7 +64,7 @@
         .bg-grid {
             position: fixed;
             inset: 0;
-            z-index: -1;
+            z-index: -2; /* Behind canvas */
             pointer-events: none;
             opacity: 0.22;
             background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(110, 236, 216, 0.04) 3px);
