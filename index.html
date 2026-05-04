@@ -70,7 +70,12 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--text);
+            background: var(--dna-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 100%;
+            animation: 4s ease-in-out infinite holo-shimmer;
             text-decoration: none;
         }
         .nav-links {
@@ -124,12 +129,13 @@
         }
         .hero-subtitle {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(0.75rem, 2vw, 1.5rem);
+            font-size: clamp(0.45rem, 1.2vw, 0.9rem);
             color: var(--teal);
             margin-bottom: 16px;
             max-width: 600px;
             line-height: 1.4;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         .hero-title {
             font-family: 'Orbitron', sans-serif;
@@ -181,7 +187,7 @@
             margin-top: auto;
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
-            color: #9a92c0;
+            color: var(--teal);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -329,7 +335,7 @@
 
     <!-- Header -->
     <nav class="nav">
-        <a href="#" class="nav-logo">HELIXA</a>
+        <a href="#" class="nav-logo">helixa</a>
         <div class="nav-links">
             <a href="#" class="nav-link active">HOME</a>
             <a href="#" class="nav-link">AGENTS</a>
@@ -347,7 +353,7 @@
 
     <!-- Main Content -->
     <main class="hero-section">
-        <p class="hero-subtitle">The Identity Layer for AI Agents</p>
+        <p class="hero-subtitle">THE IDENTITY LAYER FOR AI AGENTS</p>
         <h1 class="hero-title">
             <span class="muted">Every </span>
             <span class="gradient">AGENT</span>
