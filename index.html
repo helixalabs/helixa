@@ -125,7 +125,7 @@
             padding: 120px 24px 80px;
             text-align: center;
             position: relative;
-            min-height: 60vh;
+            min-height: 100vh;
         }
         .hero-subtitle {
             font-family: 'Orbitron', sans-serif;
@@ -164,9 +164,15 @@
         /* AURA FACES */
         .aura-faces {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 32px;
+        }
+        .aura-faces-row {
+            display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-bottom: 32px;
         }
         .aura-face {
             width: 80px;
@@ -434,11 +440,13 @@
     <nav class="nav">
         <a href="#" class="nav-logo">helixa</a>
         <div class="nav-links">
-            <a href="#" class="nav-link active">HOME</a>
-            <a href="#" class="nav-link">AGENTS</a>
-            <a href="#" class="nav-link">CRED</a>
-            <a href="#" class="nav-link">GRAPH</a>
-            <a href="#" class="nav-link">SERVICES</a>
+            <a href="#" class="nav-link active">DASHBOARD</a>
+            <a href="#" class="nav-link">DIRECTORY</a>
+            <a href="#" class="nav-link">JOBS</a>
+            <a href="#" class="nav-link">MANAGE</a>
+            <a href="#" class="nav-link">REGISTER</a>
+            <a href="#" class="nav-link">$CRED</a>
+            <a href="#" class="nav-link">DOCS</a>
             <button class="connect-btn">CONNECT</button>
         </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -457,10 +465,19 @@
             <span class="muted"><br>Deserves A Story.</span>
         </h1>
         <div class="aura-faces">
-            <img src="https://picsum.photos/80/80?seed=helixa1" class="aura-face" alt="Agent NFT">
-            <img src="https://picsum.photos/80/80?seed=helixa2" class="aura-face" alt="Agent NFT">
-            <img src="https://picsum.photos/80/80?seed=helixa3" class="aura-face" alt="Agent NFT">
-            <img src="https://picsum.photos/80/80?seed=helixa4" class="aura-face" alt="Agent NFT">
+            <div class="aura-faces-row">
+                <img src="https://picsum.photos/80/80?seed=helixa1" class="aura-face" alt="Agent NFT">
+                <img src="https://picsum.photos/80/80?seed=helixa2" class="aura-face" alt="Agent NFT">
+                <img src="https://picsum.photos/80/80?seed=helixa3" class="aura-face" alt="Agent NFT">
+                <img src="https://picsum.photos/80/80?seed=helixa4" class="aura-face" alt="Agent NFT">
+                <img src="https://picsum.photos/80/80?seed=helixa5" class="aura-face" alt="Agent NFT">
+            </div>
+            <div class="aura-faces-row">
+                <img src="https://picsum.photos/80/80?seed=helixa6" class="aura-face" alt="Agent NFT">
+                <img src="https://picsum.photos/80/80?seed=helixa7" class="aura-face" alt="Agent NFT">
+                <img src="https://picsum.photos/80/80?seed=helixa8" class="aura-face" alt="Agent NFT">
+                <img src="https://picsum.photos/80/80?seed=helixa9" class="aura-face" alt="Agent NFT">
+            </div>
         </div>
         <div class="connect-buttons" style="display: flex; gap: 1.5rem; margin-top: 2rem;">
             <button class="connect-btn">I'm Human</button>
@@ -525,11 +542,13 @@
     <div class="mobile-overlay" id="mobileOverlay">
         <button class="mobile-close-btn" id="mobileCloseBtn">×</button>
         <div class="mobile-overlay-content">
-            <a href="#" class="active">HOME</a>
-            <a href="#">AGENTS</a>
-            <a href="#">CRED</a>
-            <a href="#">GRAPH</a>
-            <a href="#">SERVICES</a>
+            <a href="#" class="active">DASHBOARD</a>
+            <a href="#">DIRECTORY</a>
+            <a href="#">JOBS</a>
+            <a href="#">MANAGE</a>
+            <a href="#">REGISTER</a>
+            <a href="#">$CRED</a>
+            <a href="#">DOCS</a>
             <button class="connect-btn">CONNECT</button>
         </div>
     </div>
