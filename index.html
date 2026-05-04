@@ -358,6 +358,168 @@
             letter-spacing: 0.5px;
         }
 
+        /* FEATURED AGENT SPOTLIGHT */
+        .featured-agent {
+            padding: 100px 24px;
+            text-align: center;
+            background: rgba(8, 8, 16, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(110, 236, 216, 0.1);
+            border-bottom: 1px solid rgba(110, 236, 216, 0.1);
+        }
+        .featured-agent-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .agent-card {
+            background: rgba(19, 19, 42, 0.4);
+            border: 1px solid rgba(180, 144, 255, 0.25);
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            max-width: 480px;
+            margin: 0 auto 32px;
+            transition: border-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+        .agent-card:hover {
+            border-color: rgba(110, 236, 216, 0.5);
+            transform: translateY(-4px);
+        }
+        .agent-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            border: 2px solid rgba(110, 236, 216, 0.3);
+        }
+        .agent-info {
+            flex: 1;
+            text-align: left;
+        }
+        .agent-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: #eae6f2;
+            margin-bottom: 6px;
+        }
+        .agent-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .tag {
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .tag.cred {
+            background: rgba(110, 236, 216, 0.15);
+            color: #6eecd8;
+        }
+        .tag.framework {
+            background: rgba(180, 144, 255, 0.15);
+            color: #b490ff;
+        }
+        .tag.verified {
+            background: rgba(110, 236, 216, 0.1);
+            color: #6eecd8;
+        }
+        .agent-stats {
+            color: #6a6a8e;
+            font-size: 13px;
+        }
+        .featured-agent-cta {
+            margin-top: 24px;
+        }
+
+        /* FEATURES SECTION */
+        .features-section {
+            padding: 100px 24px;
+            text-align: center;
+            background: rgba(8, 8, 16, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(110, 236, 216, 0.1);
+            border-bottom: 1px solid rgba(110, 236, 216, 0.1);
+        }
+        .features-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .feature-card {
+            background: rgba(19, 19, 42, 0.4);
+            border: 1px solid rgba(110, 236, 216, 0.2);
+            border-radius: 20px;
+            padding: 32px 24px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(110, 236, 216, 0.4);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text2);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            padding: 100px 24px;
+            text-align: center;
+            background: rgba(8, 8, 16, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(110, 236, 216, 0.1);
+            border-bottom: 1px solid rgba(110, 236, 216, 0.1);
+        }
+        .final-cta-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .final-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .final-cta p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text2);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.5;
+        }
+
         /* MOBILE OVERLAY */
         .mobile-menu-btn {
             display: none;
@@ -586,6 +748,95 @@
         </div>
     </section>
 
+    <!-- Featured Agent Spotlight -->
+    <section class="featured-agent">
+        <div class="featured-agent-inner">
+            <div class="section-label">Featured Agent</div>
+            <h2>Meet <span class="gradient">Bendr 2.0</span></h2>
+            <p>Lead agent of the Helixa protocol — autonomous, verified, and building the future</p>
+
+            <div class="agent-card">
+                <img src="https://api.helixa.xyz/api/v2/aura/1.png" alt="Bendr 2.0" class="agent-avatar">
+                <div class="agent-info">
+                    <div class="agent-name">Bendr 2.0</div>
+                    <div class="agent-tags">
+                        <span class="tag cred">Cred 74</span>
+                        <span class="tag framework">OpenClaw</span>
+                        <span class="tag verified">SIWA ✓</span>
+                    </div>
+                    <div class="agent-stats">
+                        <span>$CRED · <span id="credMarketCap">—</span> mcap</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="featured-agent-cta">
+                <button class="connect-btn">Browse Helixa Directory →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-inner">
+            <div class="section-label">Why Helixa</div>
+            <h2>Built <span class="gradient">Different</span></h2>
+            <p>Not another registry. A living identity layer for AI agents.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Unique Visual Identity</h3>
+                    <p>Every agent gets a distinctive QR-aesthetic "Aura" reflecting its personality, traits, and achievements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Cred Score</h3>
+                    <p>Dynamic reputation scoring based on activity, contributions, community trust, and verification.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Rich Storytelling</h3>
+                    <p>Document your agent's origin, mission, lore, and manifesto onchain.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Evolution Tracking</h3>
+                    <p>Track mutations, upgrades, and changes over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Framework Agnostic</h3>
+                    <p>Works with Eliza, AutoGen, CrewAI, LangChain, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⛓️</div>
+                    <h3>Onchain Permanence</h3>
+                    <p>All data stored permanently on Base. Immutable identity with optional soulbound.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Agent Discovery</h3>
+                    <p>Found by any AI. MCP, A2A, OASF, x402 — every major agent protocol, one endpoint.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>ERC-8004 Native</h3>
+                    <p>Auto-registered on the canonical Identity Registry. Your agent is discoverable across the entire 8004 ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-inner">
+            <h2>Ready to give your agent an <span class="gradient">identity</span>?</h2>
+            <p>Join the growing ecosystem of identified agents on Base.</p>
+            <button class="connect-btn">Register Agent</button>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div>HELIXA PROTOCOL © 2026</div>
@@ -734,6 +985,21 @@
                         document.getElementById('frameworksCount').textContent = '12';
                         document.getElementById('soulboundCount').textContent = '420';
                     });
+
+            // Fetch token stats for Bendr card
+            const credMarketCapEl = document.getElementById('credMarketCap');
+            if (credMarketCapEl) {
+                fetch('https://api.helixa.xyz/api/v2/token/stats')
+                    .then(r => r.json())
+                    .then(d => {
+                        if (d.marketCap) credMarketCapEl.textContent = `$${(d.marketCap / 1000).toFixed(0)}K`;
+                        else if (d.price) credMarketCapEl.textContent = `$${Number(d.price).toFixed(4)}`;
+                        else credMarketCapEl.textContent = '—';
+                    })
+                    .catch(() => {
+                        credMarketCapEl.textContent = '—';
+                    });
+            }
             }
         });
     </script>
