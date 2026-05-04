@@ -310,6 +310,51 @@
             margin-top: 64px;
         }
 
+        /* STATS BAR */
+        .stats-bar {
+            padding: 60px 24px;
+            text-align: center;
+            background: rgba(8, 8, 16, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(110, 236, 216, 0.1);
+            border-bottom: 1px solid rgba(110, 236, 216, 0.1);
+        }
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .stat {
+            flex: 1;
+            min-width: 180px;
+            max-width: 250px;
+        }
+        .stat-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .stat-num.purple {
+            color: #b490ff;
+        }
+        .stat-num.blue {
+            color: #80d0ff;
+        }
+        .stat-num.gold {
+            color: #f5a0d0;
+        }
+        .stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text2);
+            letter-spacing: 0.5px;
+        }
+
         /* MOBILE OVERLAY */
         .mobile-menu-btn {
             display: none;
@@ -516,6 +561,28 @@
         </div>
     </section>
 
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-container" id="statsContainer">
+            <div class="stat">
+                <div class="stat-num purple" id="agentsCount">—</div>
+                <div class="stat-label">Agents Registered</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num blue" id="totalCred">—</div>
+                <div class="stat-label">Total Cred</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num blue" id="frameworksCount">—</div>
+                <div class="stat-label">Frameworks</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num gold" id="soulboundCount">—</div>
+                <div class="stat-label">Soulbound</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div>HELIXA PROTOCOL © 2026</div>
@@ -642,6 +709,28 @@
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
                 });
+            }
+
+            // Fetch and display Helixa stats
+            const statsContainer = document.getElementById('statsContainer');
+            if (statsContainer) {
+                fetch('https://api.helixa.xyz/api/v2/stats')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update stats with real data
+                        document.getElementById('agentsCount').textContent = data.totalAgents?.toLocaleString() || '0';
+                        document.getElementById('totalCred').textContent = data.totalCredScore?.toLocaleString() || '0';
+                        document.getElementById('frameworksCount').textContent = data.frameworks || '0';
+                        document.getElementById('soulboundCount').textContent = data.soulboundCount?.toLocaleString() || '0';
+                    })
+                    .catch(error => {
+                        console.error('Failed to fetch stats:', error);
+                        // Fallback to placeholder numbers if API fails
+                        document.getElementById('agentsCount').textContent = '1,380';
+                        document.getElementById('totalCred').textContent = '74,000';
+                        document.getElementById('frameworksCount').textContent = '12';
+                        document.getElementById('soulboundCount').textContent = '420';
+                    });
             }
         });
     </script>
