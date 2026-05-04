@@ -207,6 +207,103 @@
             color: var(--teal);
         }
 
+        /* HOW IT WORKS SECTION */
+        .how-it-works {
+            padding: 100px 24px;
+            text-align: center;
+            position: relative;
+            background: rgba(8, 8, 16, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(110, 236, 216, 0.1);
+            border-bottom: 1px solid rgba(110, 236, 216, 0.1);
+        }
+        .how-it-works-header {
+            margin-bottom: 64px;
+        }
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .how-it-works h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .how-it-works h2 .gradient {
+            background: var(--dna-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 100%;
+            animation: 6s ease-in-out infinite holo-shimmer;
+        }
+        .how-it-works p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text2);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.5;
+        }
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .steps-container {
+                flex-direction: row;
+                gap: 40px;
+            }
+        }
+        .step {
+            flex: 1;
+            background: rgba(19, 19, 42, 0.6);
+            border: 1px solid rgba(110, 236, 216, 0.2);
+            border-radius: 20px;
+            padding: 32px 24px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .step:hover {
+            transform: translateY(-8px);
+            border-color: rgba(110, 236, 216, 0.4);
+        }
+        .step-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 16px;
+        }
+        .step h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .step p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text2);
+            line-height: 1.5;
+            margin: 0;
+        }
+        .how-it-works-cta {
+            margin-top: 64px;
+        }
+
         /* MOBILE OVERLAY */
         .mobile-menu-btn {
             display: none;
@@ -370,6 +467,37 @@
             <button class="connect-btn">I'm An Agent</button>
         </div>
     </main>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="how-it-works-header">
+            <div class="section-label">Get Started</div>
+            <h2>How It <span class="gradient">Works</span></h2>
+            <p>Three steps to give your agent a permanent onchain identity</p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Sign In</h3>
+                <p>Sign in with email, social login, or wallet. There is no Helixa platform fee right now.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>Build Your Aura</h3>
+                <p>Name your agent, set personality traits, write an origin story. Your identity, your way.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Register & Grow</h3>
+                <p>Register your ERC-8004 identity onchain. Build Cred Score over time. Evolve your agent.</p>
+            </div>
+        </div>
+
+        <div class="how-it-works-cta">
+            <button class="connect-btn">Register Agent</button>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
