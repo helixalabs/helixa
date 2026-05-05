@@ -249,11 +249,12 @@
             color: #b490ff;
         }
         .how-it-works h2 .gradient {
-            background: none;
-            -webkit-background-clip: initial;
-            background-clip: initial;
-            color: #b490ff;
-            animation: none;
+            background: var(--dna-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 100%;
+            animation: 6s ease-in-out infinite holo-shimmer;
         }
         .how-it-works p {
             font-family: 'Inter', sans-serif;
