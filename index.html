@@ -105,21 +105,13 @@
             padding: 0.75rem 1.75rem;
             font-size: 0.95rem;
             font-weight: 600;
-            color: var(--text2);
+            color: var(--teal);
             transition: all 0.3s;
             text-transform: uppercase;
-            border: 1px solid var(--text2);
+            border: 1px solid var(--teal);
             letter-spacing: 0.5px;
         }
         .connect-btn:hover {
-            color: var(--teal);
-            border-color: var(--teal);
-        }
-        .nav .connect-btn {
-            color: var(--teal);
-            border-color: var(--teal);
-        }
-        .nav .connect-btn:hover {
             color: #b490ff;
             border-color: #b490ff;
         }
@@ -594,7 +586,7 @@
         .mobile-menu-btn {
             display: none;
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--teal);
             border-radius: 8px;
             width: 44px;
             height: 44px;
@@ -609,9 +601,15 @@
             display: block;
             width: 18px;
             height: 2px;
-            background: var(--text2);
+            background: var(--teal);
             border-radius: 1px;
             transition: 0.3s;
+        }
+        .mobile-menu-btn:hover {
+            border-color: #b490ff;
+        }
+        .mobile-menu-btn:hover span {
+            background: #b490ff;
         }
         .mobile-overlay {
             position: fixed;
@@ -655,7 +653,7 @@
             right: 1rem;
             background: transparent;
             border: none;
-            color: var(--text2);
+            color: var(--teal);
             font-size: 2.5rem;
             font-family: 'Orbitron', sans-serif;
             cursor: pointer;
@@ -668,7 +666,7 @@
             transition: color 0.3s;
         }
         .mobile-close-btn:hover {
-            color: var(--teal);
+            color: #b490ff;
         }
 
         /* MOBILE RESPONSIVENESS */
