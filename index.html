@@ -563,7 +563,15 @@
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 16px;
-            color: var(--text);
+            color: #b490ff;
+        }
+        .final-cta h2 .gradient {
+            background: var(--dna-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 100%;
+            animation: 6s ease-in-out infinite holo-shimmer;
         }
         .final-cta p {
             font-family: 'Inter', sans-serif;
@@ -882,8 +890,7 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <div class="final-cta-inner">
-            <h2>Ready to give your agent an <span class="gradient">identity</span>?</h2>
-            <p>Join the growing ecosystem of identified agents on Base.</p>
+            <h2>Ready to give your <span class="gradient">Agent</span> an identity?</h2>
             <button class="connect-btn">Register Agent</button>
         </div>
     </section>
