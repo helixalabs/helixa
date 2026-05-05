@@ -427,6 +427,13 @@
             color: #eae6f2;
             margin-bottom: 6px;
         }
+        .agent-role {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text2);
+            letter-spacing: 0.4px;
+            margin-bottom: 10px;
+        }
         .agent-tags {
             display: flex;
             gap: 12px;
@@ -773,12 +780,12 @@
         <div class="featured-agent-inner">
             <div class="section-label">Featured Agent</div>
             <h2>Meet <span class="gradient">Bendr 2.0</span></h2>
-            <p>Lead agent of the Helixa protocol — autonomous, verified, and building the future</p>
 
             <div class="agent-card">
                 <img src="https://api.helixa.xyz/api/v2/aura/1.png" alt="Bendr 2.0" class="agent-avatar">
                 <div class="agent-info">
                     <div class="agent-name">Bendr 2.0</div>
+                    <div class="agent-role">Lead Agent of Helixa Protocol</div>
                     <div class="agent-tags">
                         <span class="tag cred">Cred 74</span>
                         <span class="tag framework">OpenClaw</span>
@@ -1006,19 +1013,42 @@
                         document.getElementById('soulboundCount').textContent = '420';
                     });
 
-            // Fetch token stats for Bendr card
+            // Fetch real $CRED market cap for Bendr card
             const credMarketCapEl = document.getElementById('credMarketCap');
+            const formatUsdCompact = (value) => {
+                const amount = Number(value);
+                if (!Number.isFinite(amount) || amount <= 0) return '—';
+                if (amount >= 1_000_000_000) return `$${(amount / 1_000_000_000).toFixed(1).replace(/\.0$/, '')}B`;
+                if (amount >= 1_000_000) return `$${(amount / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`;
+                if (amount >= 1_000) return `$${(amount / 1_000).toFixed(0)}K`;
+                return `$${amount.toFixed(0)}`;
+            };
             if (credMarketCapEl) {
-                fetch('https://api.helixa.xyz/api/v2/token/stats')
-                    .then(r => r.json())
-                    .then(d => {
-                        if (d.marketCap) credMarketCapEl.textContent = `$${(d.marketCap / 1000).toFixed(0)}K`;
-                        else if (d.price) credMarketCapEl.textContent = `$${Number(d.price).toFixed(4)}`;
-                        else credMarketCapEl.textContent = '—';
-                    })
-                    .catch(() => {
-                        credMarketCapEl.textContent = '—';
-                    });
+                const CRED_TOKEN_ADDRESS = '0xAB3f23c2ABcB4E12Cc8B593C218A7ba64Ed17Ba3';
+                const readMarketCap = (data) => {
+                    const pair = Array.isArray(data?.pairs) ? data.pairs[0] : Array.isArray(data) ? data[0] : null;
+                    return data?.marketCap || data?.mcap || data?.fdv || pair?.marketCap || pair?.fdv;
+                };
+                (async () => {
+                    let marketCap = null;
+                    const sources = [
+                        'https://api.helixa.xyz/api/v2/token/stats',
+                        `https://api.dexscreener.com/latest/dex/tokens/${CRED_TOKEN_ADDRESS}`,
+                    ];
+
+                    for (const source of sources) {
+                        try {
+                            const response = await fetch(source);
+                            if (!response.ok) continue;
+                            marketCap = readMarketCap(await response.json());
+                            if (marketCap) break;
+                        } catch (error) {
+                            // Try the next source. DexScreener is the market-cap fallback when the Helixa API only returns holder stats.
+                        }
+                    }
+
+                    credMarketCapEl.textContent = formatUsdCompact(marketCap);
+                })();
             }
             }
         });
